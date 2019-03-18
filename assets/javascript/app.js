@@ -1,5 +1,7 @@
 //I'm having trouble getting this to interact with Firebase at all. The realtime database's data doesn't update with any of the variables I attempt to update and I can't seem to troubleshoot its link as the problem. With that, I'm having trouble testing it, too. I'm going to come back and keep working on this over the weekend but I'm also confident after my successful experience with our Firebase activity earlier this week. I'm sure the problem is minor and easily fixable and the rest will fall (relatively easily) into place. How is Firebase undefined?
 
+// UPDATE: Errors have been elimated, I can now start troubleshooting if the code actually works!!
+
 var config = {
     apiKey: "AIzaSyB8_OAo-9EAaYrAYMUNWPJqC0Hhj5ULaMw",
     authDomain: "myawesometrains.firebaseapp.com",
@@ -15,7 +17,7 @@ var database = firebase.database();
 
 $("#go").on("click", function (event) {
 
-    var title = $("train-input").val().trim();
+    var title = $("#train-input").val().trim();
     var frontier = $("#frontier-input").val().trim();
     var startDate = $("#time-input").val().trim();
     var frequency = $("#frequency-input").val().trim();
@@ -68,12 +70,12 @@ database.ref().on("child_added"), function (childSnapshot) {
     console.log("ARRIVAL TIME: " + nextTrain);
 
     var addRow = $("<tr>").append(
-    $("<td>").text(childTitle),
-    $("<td>").text(childFrontier),
-    $("<td>").text(childDate),
-    $("<td>").text(nextTrain),
-    $("<td>").text(tMinutesTillTrain)
+        $("<td>").text(childTitle),
+        $("<td>").text(childFrontier),
+        $("<td>").text(childDate),
+        $("<td>").text(nextTrain),
+        $("<td>").text(tMinutesTillTrain)
     );
 
- $("#title-table > tbody").append(addRow);
+    $("#title-table > tbody").append(addRow);
 } 
